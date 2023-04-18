@@ -1,4 +1,5 @@
 import { IFCLoader } from "web-ifc-three/IFCLoader";
+ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
 
 // Sets up the IFC loading
 const ifcLoader = new IFCLoader();
