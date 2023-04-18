@@ -1,15 +1,20 @@
 {
-  "name": "bim_projekt",
+  "name": "example",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000B\u0000I\u0000M\u0000_\u0000P\u0000r\u0000o\u0000j\u0000e\u0000k\u0000t\u0000\r\u0000 \u0000",
+  "description": "-",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
   "dependencies": {
-    "three": "^0.151.3",
-    "web-ifc-three": "^0.0.125"
+    "three": "^0.128.0",
+    "web-ifc-three": "0.0.102"
   }
 }
