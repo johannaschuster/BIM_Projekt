@@ -84,10 +84,6 @@ html, body {
     width: 40px;
 }
 
-#side-menu-right {
-    right: 0;
-    width: 300px;
-}
 
 .loading-overlay {
     position: absolute;
