@@ -1,7 +1,6 @@
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import { createSideMenuButton } from './utils/gui-creator';
-import {
-  IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
+import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
 } from 'web-ifc';
 import {
   MeshBasicMaterial,
@@ -96,9 +95,6 @@ async function getAllWallMeshes() {
   return meshes;
 }
 
-
-
-// viewer.IFC.loader.ifcManager.useWebWorkers(true, 'files/IFCWorker.js');
 viewer.IFC.setWasmPath('files/');
 
 viewer.IFC.loader.ifcManager.applyWebIfcConfig({
@@ -108,35 +104,11 @@ viewer.IFC.loader.ifcManager.applyWebIfcConfig({
 
 viewer.context.renderer.postProduction.active = true;
 
-// Setup loader
-
-// const lineMaterial = new LineBasicMaterial({ color: 0x555555 });
-// const baseMaterial = new MeshBasicMaterial({ color: 0xffffff, side: 2 });
-
 let first = true;
 let model;
 
 const loadIfc = async (event) => {
 
-  // tests with glTF
-  // const file = event.target.files[0];
-  // const url = URL.createObjectURL(file);
-  // const result = await viewer.GLTF.exportIfcFileAsGltf({ ifcFileUrl: url });
-  //
-  // const link = document.createElement('a');
-  // link.download = `${file.name}.gltf`;
-  // document.body.appendChild(link);
-  //
-  // for(const levelName in result.gltf) {
-  //   const level = result.gltf[levelName];
-  //   for(const categoryName in level) {
-  //     const category = level[categoryName];
-  //     link.href = URL.createObjectURL(category.file);
-  //     link.click();
-  //   }
-  // }
-  //
-  // link.remove();
   const selectedFile = event.target.files[0];
   if(!selectedFile) return;
 
@@ -157,15 +129,12 @@ const loadIfc = async (event) => {
   });
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
-  // model.material.forEach(mat => mat.side = 2);
+
 
   if(first) first = false
   else {
     ClippingEdges.forceStyleUpdate = true;
   }
-
-  // await createFill(model.modelID);
-  // viewer.edges.create(`${model.modelID}`, model.modelID, lineMaterial, baseMaterial);
 
   await viewer.shadowDropper.renderShadow(model.modelID);
 
@@ -209,7 +178,6 @@ window.ondblclick = async () => {
   }
 };
 
-//Setup UI
 const loadButton = createSideMenuButton('./resources/folder-icon.svg');
 loadButton.addEventListener('click', () => {
   loadButton.blur();
