@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BIM Projekt</title>
     <script defer src="./build/bundle.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <input type="file" name="load" id="file-input" />
-    <canvas id="three-canvas"></canvas>
+    <div id="viewer-container"></div>
+      <div id="loading-overlay" class="loading-overlay hidden">
+      <h1 id="loading-progress" class="loading-progress"></h1>
+    </div>
   </body>
 </html>
