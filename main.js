@@ -116,11 +116,9 @@ const loadIfc = async (event) => {
   const progressText = document.getElementById('loading-progress');
 
   overlay.classList.remove('hidden');
-  progressText.innerText = `Loading`;
 
   viewer.IFC.loader.ifcManager.setOnProgress((event) => {
     const percentage = Math.floor((event.loaded * 100) / event.total);
-    progressText.innerText = `Loaded ${percentage}%`;
   });
 
   viewer.IFC.loader.ifcManager.parser.setupOptionalCategories({
