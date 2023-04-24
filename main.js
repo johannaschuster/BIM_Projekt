@@ -18,9 +18,7 @@ const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
 viewer.axes.setAxes();
 viewer.grid.setGrid();
-// viewer.shadowDropper.darkness = 1.5;
 
-// Set up stats
 const stats = new Stats();
 stats.showPanel(2);
 document.body.append(stats.dom);
