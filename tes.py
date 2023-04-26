@@ -4,6 +4,6 @@ db_pfad = '\\BIM_Projekt.db\\f1_daten.db'
 db_verbindung = sqlite3.connect(db_pfad)
 db_curser = db_verbindung.cursor()
 db_curser.execute('SELECT * FROM  BIM_Analyse;') 
-gefundene_daten = db_cursor.fetchall() 
+gefundene_daten = db_curser.fetchall() 
 
 print(str(gefundene_daten))
