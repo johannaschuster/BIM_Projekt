@@ -64,3 +64,14 @@ upload-button:hover {
     background-color: #2c519a;
 }
 
+
+table {
+   
+position: absolute;
+  top: 0;
+  right: 0;
+  height:fit-content;
+  width:40vw;
+  margin-top: 200px;
+  margin-right: 20px;
+}
