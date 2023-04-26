@@ -2,8 +2,39 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: canada-type-gibson, sans-serif;
+    font-style: normal;
+    font-weight: 100;
 }
+header {
+    background-color: #A6c9f1;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 36px;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 20px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
 
 .icon {
     max-width: 20px;
