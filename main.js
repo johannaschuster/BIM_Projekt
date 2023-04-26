@@ -1,3 +1,4 @@
+import { createTable } from './utils/table';
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
 import {createNewTable} from './utils/table';
@@ -58,3 +59,7 @@ newTable.addEventListener('load', ()=>{
   return newTable
 })
 });
+
+function createTable(){
+  const table = document.createElement('ifcTable');  
+}
