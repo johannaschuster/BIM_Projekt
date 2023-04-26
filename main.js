@@ -1,5 +1,5 @@
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
-import { createSideMenuButton } from './utils/button';
+import {createUploadButton} from './utils/button';
 import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
 } from 'web-ifc';
 import {
@@ -46,7 +46,7 @@ inputElement.setAttribute('type', 'file');
 inputElement.classList.add('hidden');
 inputElement.addEventListener('change', loadIfc, false);
 
-const loadButton = createSideMenuButton('./resources/folder-icon.svg');
+const loadButton = createUploadButton();
 loadButton.addEventListener('click', () => {
   loadButton.blur();
   inputElement.click();
