@@ -1,14 +1,16 @@
-export function createSideMenuButton(iconSource){
-  const button = document.createElement('button');
-  button.classList.add('basic-button');
-
-  const image = document.createElement("img");
-  image.setAttribute("src", iconSource);
-  image.classList.add('icon');
-  button.appendChild(image);
-
-  const sideMenu = document.getElementById('side-menu-left');
-  sideMenu.appendChild(button);
-
-  return button;
+export function createUploadButton(){
+  /*const button = document.createElement('upload-button');
+  button.classList.add('upload-button');
+  button.innerHTML ="Modell hochladen";
+*/
+const button = document.createElement('upload-button');
+button.innerHTML = "Modell hochladen";
+button.type = "hochladen";
+button.name = "upload";
+document.body.appendChild(button);
+return button;
 }
+// let btn = document.createElement("upload-button");
+//btn.innerHTML = "Modell hochladen";
+//document.body.appendChild(btn);
+//return button;
