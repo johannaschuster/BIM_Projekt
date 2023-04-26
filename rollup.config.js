@@ -6,7 +6,7 @@ export default {
   output: {
     file: "build/main.js",
     format: 'iife',
-    inlineDynamicImports: true, //Necessary for jspdf
+    inlineDynamicImports: true, 
   },
   plugins: [ nodeResolve(), commonjs() ]
 };
