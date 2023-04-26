@@ -6,3 +6,4 @@ button.name = "upload";
 document.body.appendChild(button);
 return button;
 }
+

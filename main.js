@@ -52,3 +52,7 @@ loadButton.addEventListener('click', () => {
   loadButton.blur();
   inputElement.click();
 });
+
+function createTable(){
+  const table = document.createElement('ifcTable');  
+}
