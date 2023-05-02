@@ -1,6 +1,7 @@
 import {enableEditMode, editCell, saveCell} from './utils/table';
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
+import {createNewTable} from './utils/table';
 import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
 } from 'web-ifc';
 import {
@@ -51,6 +52,12 @@ const loadButton = createUploadButton();
 loadButton.addEventListener('click', () => {
   loadButton.blur();
   inputElement.click();
+ 
+let newTable = createNewTable();
+newTable.addEventListener('load', ()=>{
+  newTable.createNewTable();
+  return newTable
+})
 });
 
 const editTable = enableEditMode();

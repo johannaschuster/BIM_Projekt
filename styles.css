@@ -37,7 +37,7 @@ header {
 
 #viewer-container {
     width: 50vw;
-    height: 85vh;
+    height: 80vh;
     position: relative;
     top: 0;
     left: 20px;
@@ -60,9 +60,10 @@ upload-button {
     margin-left: 20px;
 
 }
-.basic-button:hover {
+upload-button:hover {
     background-color: #2c519a;
 }
+
 
 table {
    
