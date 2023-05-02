@@ -1,4 +1,4 @@
-/*export function enableEditMode() {
+export function enableEditMode() {
   // Get all the table cells in the document
   var cells = document.getElementsByTagName("td");
   
@@ -12,7 +12,9 @@ export function editCell() {
   // Get the current text content of the cell
   var currentValue = this.innerHTML;
   
-  this.innerHTML = 
+  // Replace the text content with an input element
+  this.innerHTML = "<input type='text' value='" + currentValue + "'>";
+  
   // Add an event listener to the input element to save the new value
   this.getElementsByTagName("input")[0].addEventListener("blur", saveCell);
 }
@@ -23,10 +25,4 @@ export function saveCell() {
   
   // Replace the input element with the new text content
   this.parentNode.innerHTML = newValue;
-} */
-export function getGewinn(){
-  let x = document.getElementById('Einnahmen').innerHTML;
-  let y = document.getElementById('Kosten').innerHTML;
-  let z = x-y;
-  document.getElementById('Gewinn').innerHTML = z;
 }
