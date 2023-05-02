@@ -1,4 +1,4 @@
-import { createTable } from './utils/table';
+import {enableEditMode, editCell, saveCell} from './utils/table';
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
 import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
@@ -53,6 +53,4 @@ loadButton.addEventListener('click', () => {
   inputElement.click();
 });
 
-function createTable(){
-  const table = document.createElement('ifcTable');  
-}
+const editTable = enableEditMode();
