@@ -1,7 +1,6 @@
-import {enableEditMode, editCell, saveCell} from './utils/table';
+//import {enableEditMode, editCell, saveCell} from './utils/table';
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
-import {createNewTable} from './utils/table';
 import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
 } from 'web-ifc';
 import {
@@ -14,6 +13,7 @@ import {
 } from 'three';
 import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
 import Stats from 'stats.js/src/Stats';
+import {getGewinn} from './utils/table';
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
@@ -60,4 +60,5 @@ newTable.addEventListener('load', ()=>{
 })
 });
 
-const editTable = enableEditMode();
+//const editTable = enableEditMode();
+const Gewinn = getGewinn();
