@@ -1,5 +1,4 @@
-export function enableEditMode() {
-  // Get all the table cells in the document
+/*export function enableEditMode() {
   var cells = document.getElementsByTagName("td");
   
   // Loop through the cells and add event listeners to enable editing
@@ -25,4 +24,15 @@ export function saveCell() {
   
   // Replace the input element with the new text content
   this.parentNode.innerHTML = newValue;
+}
+*/
+//export function safeInput(){
+  //document.getElementById('Einnahmen').innerHTML = 
+
+
+export function getGewinn(){
+  let x = document.getElementById('Einnahmen').innerHTML;
+  let y = document.getElementById('Kosten').innerHTML;
+  let z = x-y;
+  document.getElementById('Gewinn').innerHTML = z;
 }
