@@ -6,6 +6,15 @@
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BIM_Projekt</title>
+    
+    <script>
+      function add() {
+        var einnahmen = parseFloat(document.getElementById("einnahmen").value);
+        var kosten = parseFloat(document.getElementById("kosten").value);
+              var sum = einnahmen - kosten;
+        document.getElementById("result").innerHTML = sum + "€";
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -46,9 +55,9 @@
           <tr>
               <td style="border: 1px #000000 solid">77</td>
               <td style="border: 1px #000000 solid">65</td>
-              <td style="border: 1px #000000 solid"><div><input type="number" id="Kosten"></div></td>
-              <td style="border: 1px #000000 solid"><div><input type="number"id="Einnahmen"></div></td>
-              <td id="Gewinn" style="border: 1px #000000 solid"></td>
+              <td for = "kosten" style="border: 1px #000000 solid"><div><input type="number" id="kosten"></div></td>
+              <td for = "einnahmen" style="border: 1px #000000 solid"><div><input type="number" id="einnahmen"></div></td>
+              <td> <div><p id="result"></p></div></td>
           </tr>
           <tr>
               <td style="border: 1px #000000 solid">878</td>
@@ -58,7 +67,7 @@
               <td style="border: 1px #000000 solid"></td>
           </tr>
       </tbody>
-  </table>-->
+  </table>
 
     <script type="module" src="./build/main.js"></script>
   </body>
