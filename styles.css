@@ -66,6 +66,7 @@ upload-button:hover {
 
 
 table{
+  position: relative;
   border-collapse: collapse;
   border-spacing: 0;
 }
