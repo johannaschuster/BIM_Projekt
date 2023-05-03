@@ -23,14 +23,16 @@
       <h1 id="loading-progress" class="loading-progress"></h1>
     </div>
 
-    <table onload="enableEditMode()" style = "border: #000000 solid;">
+    <div id="table-container"></div>
+
+  <!--<table onload="enableEditMode()" style = "border: #000000 solid;">
       <thead>
           <tr>
               <th style="background-color: rgb(166,201,241);">Raum</th>
               <th style="background-color: rgb(166,201,241);">m2</th>
-              <th style="background-color: rgb(166,201,241);">Kosten</th>
-              <th style="background-color: rgb(166,201,241);">Einnahmen</th>
-              <th style="background-color: rgb(166,201,241);">Gewinn</th>
+              <th style="background-color: rgb(166,201,241);">Kosten in €</th>
+              <th style="background-color: rgb(166,201,241);">Einnahmen in €</th>
+              <th style="background-color: rgb(166,201,241);">Gewinn in €</th>
           </tr>
       </thead>
       <tbody>
@@ -44,8 +46,8 @@
           <tr>
               <td style="border: 1px #000000 solid">77</td>
               <td style="border: 1px #000000 solid">65</td>
-              <td id="Kosten" style="border: 1px #000000 solid"><div><input type="number"></div></td>
-              <td id="Einnahmen" style="border: 1px #000000 solid"><div><input type="number"></div></td>
+              <td style="border: 1px #000000 solid"><div><input type="number" id="Kosten"></div></td>
+              <td style="border: 1px #000000 solid"><div><input type="number"id="Einnahmen"></div></td>
               <td id="Gewinn" style="border: 1px #000000 solid"></td>
           </tr>
           <tr>
@@ -56,7 +58,7 @@
               <td style="border: 1px #000000 solid"></td>
           </tr>
       </tbody>
-  </table>
+  </table>-->
 
     <script type="module" src="./build/main.js"></script>
   </body>

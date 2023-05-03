@@ -11,9 +11,10 @@ import {
   DepthTexture,
   WebGLRenderTarget, Material, BufferGeometry, BufferAttribute, Mesh
 } from 'three';
-import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
-import Stats from 'stats.js/src/Stats';
-import {getGewinn} from './utils/table';
+//import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
+//import Stats from 'stats.js/src/Stats';
+//import {getGewinn} from './utils/table';
+import { createNewTable } from './utils/table';
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
@@ -35,30 +36,46 @@ let first = true;
 let model;
 
 const loadIfc = async (event) => {
-
   const selectedFile = event.target.files[0];
   if(!selectedFile) return;
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
-
+  const table = createNewTable(model);
+  loadButton.dataset.table = table.outerHTML;
 };
+
+const loadButton = createUploadButton();
+loadButton.addEventListener('click', () => {
+  loadButton.blur();
+  inputElement.click();
+  const tableContainer = document.getElementById('table-container');
+  tableContainer.innerHTML = loadButton.dataset.table;
+});
+
 
 const inputElement = document.createElement('input');
 inputElement.setAttribute('type', 'file');
 inputElement.classList.add('hidden');
 inputElement.addEventListener('change', loadIfc, false);
 
-const loadButton = createUploadButton();
+/*const loadButton = createUploadButton();
 loadButton.addEventListener('click', () => {
   loadButton.blur();
-  inputElement.click();
+  inputElement.click();*/
  
 let newTable = createNewTable();
 newTable.addEventListener('load', ()=>{
   newTable.createNewTable();
-  return newTable
 })
-});
+;
 
 //const editTable = enableEditMode();
-const Gewinn = getGewinn();
+//const Gewinn = getGewinn();
+
+const tableContainer = document.getElementById('table-container');
+
+// Generiere die Tabelle mit createNewTable()
+const table = createNewTable();
+
+// Füge die Tabelle als Kindknoten zum div-Element hinzu
+tableContainer.appendChild(table);
