@@ -51,14 +51,14 @@ inputElement.addEventListener('change', loadIfc, false);
 const loadButton = createUploadButton();
 loadButton.addEventListener('click', () => {
   loadButton.blur();
-  inputElement.click();
- 
-let newTable = createNewTable();
-newTable.addEventListener('load', ()=>{
-  newTable.createNewTable();
-  return newTable
-})
-});
+  inputElement.click();})
 
-//const editTable = enableEditMode();
-const Gewinn = getGewinn();z
+let table = document.createElement('table');
+let thead = document.createElement('thead');
+let tbody = document.createElement('tbody');
+
+table.appendChild(thead);
+table.appendChild(tbody);
+
+// Adding the entire table to the body tag
+document.getElementById('body').appendChild(table);
