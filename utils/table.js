@@ -26,10 +26,3 @@ export function saveCell() {
   // Replace the input element with the new text content
   this.parentNode.innerHTML = newValue;
 }
-
-export function getGewinn(){
-  let x = document.getElementById('Einnahmen').innerHTML;
-  let y = document.getElementById('Kosten').innerHTML;
-  let z = x-y;
-  document.getElementById('Gewinn').innerHTML = z;
-}
