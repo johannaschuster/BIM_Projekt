@@ -13,6 +13,8 @@ import {
 } from 'three';
 import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
 import Stats from 'stats.js/src/Stats';
+import { insertDataInTable } from "./utils/api_helper"
+import { getFlaecheOderSo } from './utils/analyze_file';
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
@@ -37,6 +39,8 @@ const loadIfc = async (event) => {
 
   const selectedFile = event.target.files[0];
   if(!selectedFile) return;
+
+  getFlaecheOderSo(selectedFile)
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
   
@@ -87,3 +91,5 @@ loadButton.addEventListener('click', () => {
   loadButton.blur();
   inputElement.click();
 });
+
+//insertDataInTable()
