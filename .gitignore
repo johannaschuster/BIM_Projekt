@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
 
@@ -111,3 +112,23 @@ tmp/
 temp/
 
 # End of https://www.gitignore.io/api/node
+=======
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+>>>>>>> c1f6ba6c80c59398ba8ee27423af9536b2eda266

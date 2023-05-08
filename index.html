@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="./build/bundle.js"></script>
@@ -11,5 +12,42 @@
   <body>
     <input type="file" name="load" id="file-input" />
     <canvas id="three-canvas"></canvas>
+=======
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIM_Projekt</title>
+  </head>
+  <body id="body">
+    <header>
+      <!--<h1>BIM-Analyse-Tool für deine Immobilie</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Kosten</a></li>
+          <li><a href="#">Einnahmen</a></li>
+          <li><a href="#">Gewinn</a></li>
+        </ul>
+      </nav> -->
+    </header>
+      <div id="viewer-container"></div>
+      <div id="loading-overlay" class="loading-overlay hidden">
+      <h1 id="loading-progress" class="loading-progress"></h1>
+    </div>
+
+    <table id="ttable">
+      <tr>
+        <th>Raum</th>
+        <th>qm</th>
+        <th id="kosten">Kosten</th>
+        <th id="einnahmen">Einnahmen</th>
+        <th id="result">Gewinn</th>
+      </tr>
+      <tbody id="table-b">
+
+      </tbody>
+    </table>
+
+    <script type="module" src="./build/main.js"></script>
+>>>>>>> c1f6ba6c80c59398ba8ee27423af9536b2eda266
   </body>
 </html>
