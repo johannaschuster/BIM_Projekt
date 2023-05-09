@@ -11,10 +11,29 @@ const getFlaecheOderSo = (file) => {
 }
 
 const addCell = (content, row) => {
-    const tc = row.insertCell()
-    let txt = document.createTextNode(content)
-    tc.appendChild(txt)
-}
+    const tc = row.insertCell();
+    if (content === "") {
+      const input = document.createElement("input");
+      input.setAttribute("type", "number");
+      input.addEventListener("click", () => {
+        input.addEventListener("input", () => {
+          const thirdCellInput = row.cells[2].querySelector("input");
+          const fourthCellInput = row.cells[3].querySelector("input");
+          if (thirdCellInput.value && fourthCellInput.value) {
+            const diff = Number(fourthCellInput.value) - Number(thirdCellInput.value);
+            row.cells[4].textContent = diff;
+          } else {
+            row.cells[4].textContent = "";
+          }
+        });
+      });
+      tc.appendChild(input);
+    } else {
+      let txt = document.createTextNode(content);
+      tc.appendChild(txt);
+    }
+  };
+  
 
 const insertDataInTable = (els) => {
     const table = document.getElementById("#ttable")
@@ -27,7 +46,7 @@ const insertDataInTable = (els) => {
         addCell(el, tr)
         addCell("", tr)
         addCell("", tr)
-        addCell("", tr)
+        addCell(" ", tr)
     }
 }
 
