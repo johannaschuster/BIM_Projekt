@@ -1,4 +1,4 @@
-const getFlaecheOderSo = (file) => {
+const getFlaeche = (file) => {
     const reader = new FileReader()
 
     reader.onload = () => {
@@ -20,8 +20,8 @@ const addCell = (content, row) => {
           const thirdCellInput = row.cells[2].querySelector("input");
           const fourthCellInput = row.cells[3].querySelector("input");
           if (thirdCellInput.value && fourthCellInput.value) {
-            const diff = Number(fourthCellInput.value) - Number(thirdCellInput.value);
-            row.cells[4].textContent = diff;
+            const Gewinn = Number(fourthCellInput.value) - Number(thirdCellInput.value);
+            row.cells[4].textContent = Gewinn;
           } else {
             row.cells[4].textContent = "";
           }
@@ -64,5 +64,5 @@ const extractFlaeche = (fileData) => {
 } 
 
 export {
-    getFlaecheOderSo
+    getFlaeche
 }
