@@ -13,6 +13,10 @@ header {
     justify-content: space-between;
     align-items: center;
   }
+
+  body {
+    background: rgba(245, 245, 245, 1);
+  }
   
   h1 {
     margin: 0;
@@ -54,7 +58,7 @@ upload-button {
     color: white;
     text-align: center;
     font-family: canada-type-gibson, sans-serif;
-    padding: 5px;
+    padding: 10px;
     cursor: pointer;
     margin: 10px;
     margin-left: 20px;
@@ -75,8 +79,14 @@ th, td{
   border: 1px solid #000;
 }
 
+th {
+  background-color: #A6c9f1;
+  color:white
+}
+
 #ttable {
 
+background-color: white;
   position: absolute;
   top: 0;
   right: 0;
@@ -85,3 +95,10 @@ th, td{
   margin-top: 200px;
   margin-right: 20px;
   }
+
+#tableContainer {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Abstand vom linken Rand des Container-Elements */
+  margin-left: 10px; /* Abstand zwischen den Elementen */
+}
