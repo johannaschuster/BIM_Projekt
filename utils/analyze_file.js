@@ -33,7 +33,6 @@ const addCell = (content, row) => {
       tc.appendChild(txt);
     }
   };
-  
 
 const insertDataInTable = (els) => {
     const table = document.getElementById("#ttable")
@@ -66,3 +65,4 @@ const extractFlaeche = (fileData) => {
 export {
     getFlaecheOderSo
 }
+

@@ -9,8 +9,8 @@
   </head>
   <body id="body">
     <header>
-      <!--<h1>BIM-Analyse-Tool für deine Immobilie</h1>
-      <nav>
+      <h1>BIM-Analyse-Tool</h1>
+      <!--<nav>
         <ul>
           <li><a href="#">Kosten</a></li>
           <li><a href="#">Einnahmen</a></li>
@@ -18,10 +18,12 @@
         </ul>
       </nav> -->
     </header>
+    
       <div id="viewer-container"></div>
       <div id="loading-overlay" class="loading-overlay hidden">
       <h1 id="loading-progress" class="loading-progress"></h1>
     </div>
+    <div id="tableContainer">
     <table id="ttable" >
       <tr>
         <th>Raum</th>
@@ -32,7 +34,6 @@
       </tr>
       <tbody id="table-b" onload="enableEditMode()"></tbody>
     </table>
-
     <script type="module" src="./build/main.js"></script>
   </body>
 </html>
