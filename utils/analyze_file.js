@@ -1,4 +1,4 @@
-const getFlaecheOderSo = (file) => {
+const getFlaeche = (file) => {
     const reader = new FileReader()
 
     reader.onload = () => {
@@ -20,8 +20,8 @@ const addCell = (content, row) => {
           const thirdCellInput = row.cells[2].querySelector("input");
           const fourthCellInput = row.cells[3].querySelector("input");
           if (thirdCellInput.value && fourthCellInput.value) {
-            const diff = Number(fourthCellInput.value) - Number(thirdCellInput.value);
-            row.cells[4].textContent = diff;
+            const Gewinn = Number(fourthCellInput.value) - Number(thirdCellInput.value);
+            row.cells[4].textContent = Gewinn;
           } else {
             row.cells[4].textContent = "";
           }
@@ -33,6 +33,20 @@ const addCell = (content, row) => {
       tc.appendChild(txt);
     }
   };
+
+  export function getFarbe(Gewinn) {
+    if (Gewinn < 0) {
+      return "#e30613"; // rot
+    } else if (Gewinn >= 1 && Gewinn <= 5000) {
+      return "#a6c9f1"; // blau
+    } else if (Gewinn > 5000 && Gewinn <= 10000) {
+      return "#95c11f"; // grün
+    } else if (Gewinn > 10000 && Gewinn <= 30000) {
+      return "#951b81"; // lila
+    } else {
+      return "#ffed00"; // gelb
+    }
+  }  
   
 
 const insertDataInTable = (els) => {
@@ -64,5 +78,5 @@ const extractFlaeche = (fileData) => {
 } 
 
 export {
-    getFlaecheOderSo
+    getFlaeche
 }

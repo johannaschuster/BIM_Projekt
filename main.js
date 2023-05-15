@@ -1,8 +1,6 @@
-//import {enableEditMode, editCell, saveCell} from './utils/table';
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
-import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
-} from 'web-ifc';
+import {IfcAPI, IFCSPACE, IFCSITE, IFCWALL} from 'web-ifc/web-ifc-api';
 import {
   MeshBasicMaterial,
   LineBasicMaterial,
@@ -11,10 +9,11 @@ import {
   DepthTexture,
   WebGLRenderTarget, Material, BufferGeometry, BufferAttribute, Mesh
 } from 'three';
-import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
-import Stats from 'stats.js/src/Stats';
-import { insertDataInTable } from "./utils/api_helper"
-import { getFlaecheOderSo } from './utils/analyze_file';
+//import { ClippingEdges } from 'web-ifc-viewer/dist/components/display/clipping-planes/clipping-edges';
+//import Stats from 'stats.js/src/Stats';
+//import { insertDataInTable } from "./utils/api_helper"
+import { getFlaeche } from './utils/analyze_file';
+import { getFarbe } from './utils/analyze_file';
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
@@ -40,46 +39,25 @@ const loadIfc = async (event) => {
   const selectedFile = event.target.files[0];
   if(!selectedFile) return;
 
-  getFlaecheOderSo(selectedFile)
+  getFlaeche(selectedFile)
 
   model = await viewer.IFC.loadIfc(selectedFile, false);
   
   const spaces = model.getItems({ type: IFCSPACE });
 
-  const tableContainer = document.getElementById('table-container');
-  const table = document.createElement('table');
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  const headerRow = document.createElement('tr');
-  const headers = ['ID', 'Name', 'Area'];
-
-  headers.forEach(header => {
-    const th = document.createElement('th');
-    th.textContent = header;
-    headerRow.appendChild(th);
-  });
-
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
-
-  spaces.forEach(space => {
-    const row = document.createElement('tr');
-    const idCell = document.createElement('td');
-    idCell.textContent = space.id;
-    const nameCell = document.createElement('td');
-    nameCell.textContent = space.name;
-    const areaCell = document.createElement('td');
-    areaCell.textContent = space.area.toFixed(2);
-    row.appendChild(idCell);
-    row.appendChild(nameCell);
-    row.appendChild(areaCell);
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(tbody);
-  tableContainer.appendChild(table);
+  const ifcSite = model.getItem({ type: IFCWALL });
+  if (ifcSite) {
+    const siteMesh = viewer.IFC.getMesh(ifcSite.modelID, ifcSite.id);
+    if (siteMesh) {
+      const overlayMaterial = new MeshBasicMaterial({ color: "#e30613", transparent: true, opacity: 0.5 }); // Transparentes Overlay-Material
+      const overlayMesh = new Mesh(siteMesh.geometry.clone(), overlayMaterial);
+      siteMesh.add(overlayMesh);
+    }
+  }
+  
 };
+
+
 
 const inputElement = document.createElement('input');
 inputElement.setAttribute('type', 'file');
@@ -92,36 +70,49 @@ loadButton.addEventListener('click', () => {
   inputElement.click();
 });
 
-//insertDataInTable()
 
- function enableEditMode() {
-  // Get all the table cells in the document
-  var cells = document.getElementsByTagName("td");
-  
-  // Loop through the cells and add event listeners to enable editing
-  for(var i = 0; i < cells.length; i++) {
-  cells[i].addEventListener("click", editCell);
+
+const handleKeyDown = async (event) => {
+  if (event.code === 'Delete') {
+    viewer.clipper.deletePlane();
+    viewer.dimensions.delete();
   }
+  if (event.code === 'Escape') {
+    viewer.IFC.selector.unHighlightIfcItems();
   }
-  enableEditMode();
-  
-   function editCell() {
-  // Get the current text content of the cell
-  var currentValue = this.innerHTML;
-  
-  // Replace the text content with an input element
-  this.innerHTML = "<input type='text' value='" + currentValue + "'>";
-  
-  // Add an event listener to the input element to save the new value
-  this.getElementsByTagName("input")[0].addEventListener("blur", saveCell);
+  if (event.code === 'KeyC') {
+    viewer.context.ifcCamera.toggleProjection();
   }
-  editCell();
-  
-   function saveCell() {
-  // Get the new value from the input element
-  var newValue = this.value;
-  
-  // Replace the input element with the new text content
-  this.parentNode.innerHTML = newValue;
+  if (event.code === 'KeyD') {
+    viewer.IFC.removeIfcModel(0);
   }
-  saveCell();
+};
+
+window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+window.onkeydown = handleKeyDown;
+window.ondblclick = async () => {
+
+  if (viewer.clipper.active) {
+    viewer.clipper.createPlane();
+  } else {
+    const result = await viewer.IFC.selector.highlightIfcItem(true);
+    if (!result) return;
+    const { modelID, id } = result;
+    const props = await viewer.IFC.getProperties(modelID, id, true, false);
+    console.log(props);
+  }
+};
+
+
+
+ if(Gewinn<0) {
+  farbe = "#e30613"; //rot
+} else if (gewinn >= 1 && gewinn <= 5000) {
+  farbe = "#a6c9f1"; // blau
+} else if (gewinn > 5000 && gewinn <= 10000) {
+  farbe = "#95c11f"; // grün 
+} else if (gewinn > 10000 && gewinn <= 30000) {
+  farbe = "#951b81"; // lila
+} else {
+  farbe = "#ffed00"; //gelb
+}
