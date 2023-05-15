@@ -33,6 +33,20 @@ const addCell = (content, row) => {
       tc.appendChild(txt);
     }
   };
+
+  export function getFarbe(Gewinn) {
+    if (Gewinn < 0) {
+      return "#e30613"; // rot
+    } else if (Gewinn >= 1 && Gewinn <= 5000) {
+      return "#a6c9f1"; // blau
+    } else if (Gewinn > 5000 && Gewinn <= 10000) {
+      return "#95c11f"; // grün
+    } else if (Gewinn > 10000 && Gewinn <= 30000) {
+      return "#951b81"; // lila
+    } else {
+      return "#ffed00"; // gelb
+    }
+  }  
   
 
 const insertDataInTable = (els) => {

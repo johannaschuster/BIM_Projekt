@@ -1,7 +1,6 @@
 import { CameraProjections, IfcViewerAPI } from 'web-ifc-viewer';
 import {createUploadButton} from './utils/button';
-import {IFCSPACE, IFCOPENINGELEMENT, IFCFURNISHINGELEMENT, IFCWALL, IFCWINDOW, IFCCURTAINWALL, IFCMEMBER, IFCPLATE
-} from 'web-ifc';
+import {IfcAPI, IFCSPACE, IFCSITE, IFCWALL} from 'web-ifc/web-ifc-api';
 import {
   MeshBasicMaterial,
   LineBasicMaterial,
@@ -14,6 +13,7 @@ import {
 //import Stats from 'stats.js/src/Stats';
 //import { insertDataInTable } from "./utils/api_helper"
 import { getFlaeche } from './utils/analyze_file';
+import { getFarbe } from './utils/analyze_file';
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(255, 255, 255) });
@@ -45,10 +45,19 @@ const loadIfc = async (event) => {
   
   const spaces = model.getItems({ type: IFCSPACE });
 
-
-  table.appendChild(tbody);
-  tableContainer.appendChild(table);
+  const ifcSite = model.getItem({ type: IFCWALL });
+  if (ifcSite) {
+    const siteMesh = viewer.IFC.getMesh(ifcSite.modelID, ifcSite.id);
+    if (siteMesh) {
+      const overlayMaterial = new MeshBasicMaterial({ color: "#e30613", transparent: true, opacity: 0.5 }); // Transparentes Overlay-Material
+      const overlayMesh = new Mesh(siteMesh.geometry.clone(), overlayMaterial);
+      siteMesh.add(overlayMesh);
+    }
+  }
+  
 };
+
+
 
 const inputElement = document.createElement('input');
 inputElement.setAttribute('type', 'file');
@@ -60,6 +69,39 @@ loadButton.addEventListener('click', () => {
   loadButton.blur();
   inputElement.click();
 });
+
+
+
+const handleKeyDown = async (event) => {
+  if (event.code === 'Delete') {
+    viewer.clipper.deletePlane();
+    viewer.dimensions.delete();
+  }
+  if (event.code === 'Escape') {
+    viewer.IFC.selector.unHighlightIfcItems();
+  }
+  if (event.code === 'KeyC') {
+    viewer.context.ifcCamera.toggleProjection();
+  }
+  if (event.code === 'KeyD') {
+    viewer.IFC.removeIfcModel(0);
+  }
+};
+
+window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+window.onkeydown = handleKeyDown;
+window.ondblclick = async () => {
+
+  if (viewer.clipper.active) {
+    viewer.clipper.createPlane();
+  } else {
+    const result = await viewer.IFC.selector.highlightIfcItem(true);
+    if (!result) return;
+    const { modelID, id } = result;
+    const props = await viewer.IFC.getProperties(modelID, id, true, false);
+    console.log(props);
+  }
+};
 
 
 
